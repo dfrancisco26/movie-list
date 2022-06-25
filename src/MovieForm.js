@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default function MovieForm({ handleSubmit, setMovieTitle, setMovieDirector, setMovieYear, setMovieColor }) {
+
+
   return (
     <div className='form'>
       <form onSubmit={handleSubmit}>

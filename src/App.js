@@ -55,13 +55,13 @@ function App() {
           setMovieYear = {setMovieYear}
           setMovieColor = {setMovieColor} />
       </div>
+      <Movie movieTitle = {movieTitle}
+        movieDirector = {movieDirector}
+        movieColor={movieColor} movieYear={movieYear} />
       <div className='movies'>
         <MovieList
           allMovies = {allMovies}
-          movieTitle = {movieTitle} 
-          movieDirector = {movieDirector} 
-          movieYear = {movieYear}
-          movieColor = {movieColor} />
+        />
       </div>
     </div>
   );
