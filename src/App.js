@@ -15,18 +15,24 @@ function App() {
 
   }
 
+  function handleMovieClick(index) {
+    allMovies.splice(index, 1);
+
+    setAllMovies([...allMovies]);
+  }
+
   const [allMovies, setAllMovies] = useState([
     {
       title: 'Across The Universe',
       director: 'Julie Taymor',
       yearReleased: 2007,
-      movieColor: 'blue'
+      movieColor: 'lightblue'
     },
     {
       title: 'Who Framed Roger Rabbit?',
       director: 'Robert Zemeckis',
       yearReleased: 1988,
-      movieColor: 'blue'
+      movieColor: 'lightblue'
     }
   ]);
   const [currentFilter, setCurrentFilter] = useState('');
@@ -34,7 +40,7 @@ function App() {
   const [movieDirector, setMovieDirector] = useState('');
   const [movieYear, setMovieYear] = useState('');
   const [movieTitle, setMovieTitle] = useState('');
-  const [movieColor, setMovieColor] = useState('');
+  const [movieColor, setMovieColor] = useState('lightblue');
 
   const movie = {
     title: movieTitle,
@@ -53,14 +59,26 @@ function App() {
           setMovieTitle = {setMovieTitle}
           setMovieDirector = {setMovieDirector}
           setMovieYear = {setMovieYear}
-          setMovieColor = {setMovieColor} />
+          setMovieColor = {setMovieColor}
+
+        />
       </div>
       <Movie movieTitle = {movieTitle}
         movieDirector = {movieDirector}
-        movieColor={movieColor} movieYear={movieYear} />
+        movieColor={movieColor} movieYear={movieYear}
+        handleMovieClick={handleMovieClick}
+      />
+      <div className='filter'>
+        <label>Filter by Title:
+          <input>
+          </input>
+        </label>
+      </div>
       <div className='movies'>
         <MovieList
           allMovies = {allMovies}
+          handleMovieClick = {handleMovieClick}
+
         />
       </div>
     </div>

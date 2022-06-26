@@ -1,3 +1,19 @@
+.App {
+  width: 100%;
+}
+
 label {
   display: block;
+}
+
+.movies {
+  background: rgb(168,0,0);
+  background: linear-gradient(0deg, rgba(168,0,0,1) 0%, rgba(161,63,63,1) 52%, rgba(0,0,0,1) 100%);
+  
+}
+.movie {
+  width: 20%;
+  border: 3px solid white;
+  border-radius: 4px;
+  margin: 20px;
 }
