@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MovieForm from './MovieForm';
 import Movie from './Movie';
 import MovieList from './MovieList';
@@ -8,15 +8,12 @@ function App() {
 
 
 
+
   function handleSubmit(e) {
     e.preventDefault();
 
     setAllMovies([...allMovies, movie]);
-
   }
-
-
-
 
   function handleMovieClick(index) {
     allMovies.splice(index, 1);
@@ -24,11 +21,12 @@ function App() {
     setAllMovies([...allMovies]);
   }
 
-
   function filterMovies(currentFilter) {
+    setCurrentFilter(currentFilter);
     const updatedMovies = allMovies.filter(movie => movie.title.includes(currentFilter));
-    setAllMovies(updatedMovies);
+    setFilteredMovies(updatedMovies);
   }
+
   const [allMovies, setAllMovies] = useState([
     {
       title: 'Across The Universe',
@@ -43,8 +41,9 @@ function App() {
       movieColor: 'lightblue'
     }
   ]);
+
   const [currentFilter, setCurrentFilter] = useState('');
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState(allMovies);
   const [movieDirector, setMovieDirector] = useState('');
   const [movieYear, setMovieYear] = useState('');
   const [movieTitle, setMovieTitle] = useState('');
@@ -56,6 +55,11 @@ function App() {
     yearReleased: movieYear,
     movieColor: movieColor
   };
+
+  useEffect(() => {
+    setFilteredMovies(allMovies);
+    setCurrentFilter('');
+  }, [allMovies]);
 
   
   return (
@@ -77,12 +81,12 @@ function App() {
       />
       <div className='filter'>
         <label>Filter by Title:
-          <input onChange={(e) => filterMovies(e.target.value)} />
+          <input value={currentFilter} onChange={(e) => filterMovies(e.target.value)} />
         </label>
       </div>
       <div className='movies'>
         <MovieList
-          allMovies = {allMovies}
+          filteredMovies = {filteredMovies}
           handleMovieClick = {handleMovieClick}
         />
       </div>
