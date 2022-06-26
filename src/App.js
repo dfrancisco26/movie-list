@@ -15,12 +15,20 @@ function App() {
 
   }
 
+
+
+
   function handleMovieClick(index) {
     allMovies.splice(index, 1);
 
     setAllMovies([...allMovies]);
   }
 
+
+  function filterMovies(currentFilter) {
+    const updatedMovies = allMovies.filter(movie => movie.title.includes(currentFilter));
+    setAllMovies(updatedMovies);
+  }
   const [allMovies, setAllMovies] = useState([
     {
       title: 'Across The Universe',
@@ -60,7 +68,6 @@ function App() {
           setMovieDirector = {setMovieDirector}
           setMovieYear = {setMovieYear}
           setMovieColor = {setMovieColor}
-
         />
       </div>
       <Movie movieTitle = {movieTitle}
@@ -70,15 +77,13 @@ function App() {
       />
       <div className='filter'>
         <label>Filter by Title:
-          <input>
-          </input>
+          <input onChange={(e) => filterMovies(e.target.value)} />
         </label>
       </div>
       <div className='movies'>
         <MovieList
           allMovies = {allMovies}
           handleMovieClick = {handleMovieClick}
-
         />
       </div>
     </div>

@@ -19,7 +19,7 @@ export default function MovieForm({ handleSubmit, setMovieTitle, setMovieDirecto
           <select onChange={e => setMovieColor(e.target.value)}>
             <option value='lightblue'>blue</option>
             <option value='pink'>pink</option>
-            <option value='lightgreen'>red</option>
+            <option value='lightgreen'>green</option>
             <option value='rgb(231, 203, 111)'>yellow</option>
           </select>
         </label>
